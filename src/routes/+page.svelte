@@ -1,5 +1,5 @@
 <script lang="ts">
-  // import Listtodo from "./components/Listtodo.svelte";
+  import Listtodo from "../components/Listtodo.svelte";
   import Todoform from "../components/Todoform.svelte";
   type Task = {
     id: string;
@@ -17,9 +17,9 @@
   }
 </script>
 
-<main class="h-full w-full flex flex-col *:gap-y-4 justify-center items-center">
+<main
+  class="h-full max-w-[680px] mt-1 mx-auto flex flex-col *:gap-y-4 justify-center items-center"
+>
   <Todoform {addTask} />
-  {#each tasks as task}
-    <p>{task.title}</p>
-  {/each}
+  <Listtodo {tasks} />
 </main>

@@ -11,13 +11,8 @@
   }
 </script>
 
-<form
-  onsubmit={addTodo}
-  class="flex justify-center items-start flex-col gap-y-1"
->
-  <label
-    for="todoname"
-    class="text-sm text-gray-500 dark:text-gray-400 flex flex-col gap-y-2"
+<form onsubmit={addTodo} class="mb-4">
+  <label for="todoname"
     >Todo
     <input
       type="text"
@@ -25,12 +20,8 @@
       name="todoname"
       placeholder="Todo name"
       required
-      class="border border-gray-800 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-pink-500 focus:border-transparent"
       bind:value={newTask}
     />
   </label>
-  <button
-    class=" text-white w-full bg-pink-500 border-0 py-2 px-6 focus:outline-none hover:bg-pink-600 rounded"
-    >Add Todo</button
-  >
+  <div class="flex justify-end"><button>Add Todo</button></div>
 </form>
