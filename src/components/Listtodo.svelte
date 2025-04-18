@@ -14,15 +14,15 @@
           checked={task.completed}
           onchange={() => toggleDone(task)}
         />
-        <span class:done={task.completed}>{task.title}</span>
+        <span class:task-completed={task.completed}>{task.title}</span>
       </label>
     </article>
   {/each}
 </section>
 
 <style>
-  .done {
-    text-decoration: line-trhough;
+  .task-completed {
+    text-decoration: line-through;
   }
   .hr-text-wrapper {
     position: relative;
