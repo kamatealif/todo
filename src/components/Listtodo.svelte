@@ -1,5 +1,5 @@
 <script>
-  let { tasks } = $props();
+  let { tasks, toggleDone } = $props();
 </script>
 
 <div class="hr-text-wrapper mb-2">
@@ -8,12 +8,22 @@
 <section class="mt-2">
   {#each tasks as task}
     <article>
-      <p>{task.title}</p>
+      <label>
+        <input
+          type="checkbox"
+          checked={task.completed}
+          onchange={() => toggleDone(task)}
+        />
+        <span class:done={task.completed}>{task.title}</span>
+      </label>
     </article>
   {/each}
 </section>
 
 <style>
+  .done {
+    text-decoration: line-trhough;
+  }
   .hr-text-wrapper {
     position: relative;
     width: 100%;
@@ -26,7 +36,7 @@
     display: inline-block;
     padding: 0 10px;
     font-size: 18px;
-    color: #7a288a;
+    color: #e1d2e4;
     background-color: #2d2d2d;
   }
 

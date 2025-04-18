@@ -15,11 +15,15 @@
       completed: false,
     });
   }
+
+  function toggleDone(task) {
+    task.completed = !task.completed;
+  }
 </script>
 
 <main
   class="h-full max-w-[680px] mt-1 mx-auto flex flex-col *:gap-y-4 justify-center items-center"
 >
   <Todoform {addTask} />
-  <Listtodo {tasks} />
+  <Listtodo {tasks} {toggleDone} />
 </main>
