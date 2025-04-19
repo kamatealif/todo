@@ -22,6 +22,10 @@
   function toggleDone(task) {
     task.completed = !task.completed;
   }
+
+  function removeTask(index) {
+    tasks.splice(index, 1);
+  }
 </script>
 
 <main
@@ -31,8 +35,12 @@
   <div class="hr-text-wrapper mb-2">
     <div class="hr-text">Tasks</div>
   </div>
-  <p>{totalTasks} / {tasks.length} Tasks Completed</p>
-  <Listtodo {tasks} {toggleDone} />
+  {#if tasks.length > 0}
+    <p>{totalTasks} / {tasks.length} Tasks Completed</p>
+  {:else}
+    <p>Add Tasak to Get STarted</p>
+  {/if}
+  <Listtodo {tasks} {toggleDone} {removeTask} />
 </main>
 
 <style>
