@@ -43,6 +43,15 @@
   }
 </script>
 
+{#snippet filterButton(filter)}
+  <button
+    onclick={() => (currentFilter = filter)}
+    class:contrast={currentFilter === filter}
+    class="capitalize"
+  >
+    {filter}
+  </button>
+{/snippet}
 <main
   class="h-full max-w-[680px] mt-1 mx-auto flex flex-col *:gap-y-4 justify-center items-center"
 >
@@ -58,18 +67,9 @@
 
   {#if tasks.length > 0}
     <div class="flex justify-end mb-1 gap-x-1">
-      <button
-        onclick={() => (currentFilter = "all")}
-        class:contrast={currentFilter === "all"}>All Task</button
-      >
-      <button
-        onclick={() => (currentFilter = "todo")}
-        class:contrast={currentFilter === "todo"}>Todo</button
-      >
-      <button
-        onclick={() => (currentFilter = "completed")}
-        class:contrast={currentFilter === "completed"}>Completed</button
-      >
+      {@render filterButton("all")}
+      {@render filterButton("todo")}
+      {@render filterButton("completed")}
     </div>
   {/if}
   <Listtodo tasks={filteredTask} {toggleDone} {removeTask} />
