@@ -3,7 +3,7 @@
 </script>
 
 <section class="mt-2">
-  {#each tasks as task, index}
+  {#each tasks as task}
     <article class="flex justify-between items-center">
       <label>
         <input
@@ -13,7 +13,7 @@
         />
         <span class:task-completed={task.completed}>{task.title}</span>
       </label>
-      <button class=" outline" onclick={() => removeTask(index)}
+      <button class=" outline" onclick={() => removeTask(task.id)}
         ><svg
           xmlns="http://www.w3.org/2000/svg"
           width="24"

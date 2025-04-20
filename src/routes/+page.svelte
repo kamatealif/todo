@@ -8,6 +8,20 @@
   };
   let tasks = $state<Task[]>([]);
 
+  let currentFilter = $state("all");
+
+  let filteredTask = $derived.by(() => {
+    switch (currentFilter) {
+      case "all":
+        return tasks;
+      case "completed":
+        return tasks.filter((task) => task.completed);
+      case "todo":
+        return tasks.filter((task) => !task.completed);
+    }
+    return tasks;
+  });
+
   let totalTasks = $derived(
     tasks.reduce((total, task) => total + Number(task.completed), 0)
   );
@@ -23,7 +37,8 @@
     task.completed = !task.completed;
   }
 
-  function removeTask(index) {
+  function removeTask(id) {
+    const index = tasks.findIndex((task) => task.id === id);
     tasks.splice(index, 1);
   }
 </script>
@@ -40,7 +55,24 @@
   {:else}
     <p>Add Tasak to Get STarted</p>
   {/if}
-  <Listtodo {tasks} {toggleDone} {removeTask} />
+
+  {#if tasks.length > 0}
+    <div class="flex justify-end mb-1 gap-x-1">
+      <button
+        onclick={() => (currentFilter = "all")}
+        class:contrast={currentFilter === "all"}>All Task</button
+      >
+      <button
+        onclick={() => (currentFilter = "todo")}
+        class:contrast={currentFilter === "todo"}>Todo</button
+      >
+      <button
+        onclick={() => (currentFilter = "completed")}
+        class:contrast={currentFilter === "completed"}>Completed</button
+      >
+    </div>
+  {/if}
+  <Listtodo tasks={filteredTask} {toggleDone} {removeTask} />
 </main>
 
 <style>
